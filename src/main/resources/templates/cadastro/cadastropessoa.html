@@ -62,20 +62,26 @@
 
 		<form action="salvarpessoa" id="formpessoa" method="post" th:object="${pessoaobj}" class="col s12">
 
-			<div class="row">
-
-				<div class="input-field col s6">
-					<label for="id" class="active">Id</label>
-					<input name="Id" th:field="*{id}" readonly="readonly" id="id" class="validate"
-						 />
-
+			<div class="row" >
+				<div class="container">
+					<div class="input-field col s6">
+						<label for="id" class="active">Id</label>
+						<input name="Id" th:field="*{id}" readonly="readonly" id="id" class="validate"
+							 />
+	
+					</div>
+					
 				</div>
 
-				<div class="input-field col s6">
-					<label for="nome" class="active">Nome</label>
-					<input name="nome" th:field="*{nome}" id="nome" class="validate"  />
-
+				<div class="container">
+					<div class="input-field col s6">
+						<label for="nome" class="active">Nome</label>
+						<input name="nome" th:field="*{nome}" id="nome" class="validate"  />
+	
+					</div>
+					
 				</div>
+
 
 			</div>
 
