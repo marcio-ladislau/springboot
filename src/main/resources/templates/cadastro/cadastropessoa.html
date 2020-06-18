@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+
+
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastro Pessoa</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="styles">
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+
+	<style>
+		table.striped>tbody>tr:nth-child(odd) {
+			background-color: rgba(158, 154, 154, 0.3);
+		}
+	</style>
+</head>
+
+<nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Reflect</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn">Button</a></li>
+        <li><a class="waves-effect waves-light btn">Button <i class="material-icons right">cloud</i></a></li>
+        <li><a class="waves-effect waves-light btn-large">Large Button</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+<body>
+	<div class="container"></div>
+
+
+	<!-- Page Content goes here -->
+
+
+	<h3>Spring Boot + Thymeleaf + Material Design Lite</h3><br />
+	<h5>Cadastro de Pessoas</h5><br /><br />
+
+	<div class="row">
+
+		<br/>
+
+			<div th:each=" m: ${msg}">
+
+				<span th:text="${m}"></span>
+
+				
+			</div>
+
+		<br/>
+
+		<form action="salvarpessoa" id="formpessoa" method="post" th:object="${pessoaobj}" class="col s12">
+
+			<div class="row">
+
+				<div class="input-field col s6">
+					<label for="id" class="active">Id</label>
+					<input name="Id" th:field="*{id}" readonly="readonly" id="id" class="validate"
+						 />
+
+				</div>
+
+				<div class="input-field col s6">
+					<label for="nome" class="active">Nome</label>
+					<input name="nome" th:field="*{nome}" id="nome" class="validate"  />
+
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12">
+
+					<label class="active" for="sobrenome">Sobrenome</label>
+					<input name="sobrenome" th:field="*{sobrenome}" id="sobrenome" class="validate"
+						 />
+
+				</div>
+
+
+
+
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12">
+					<label class="active" for="idade">Idade</label>
+					<input name="idade" th:field="*{idade}" id="idade" class="validate"  />
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+
+				<div class="input-field col s6">
+
+					<div class="input-field col s6">
+						<button class="btn waves-effect waves-light" type="submit" name="salvar">Salvar</button>
+
+						<button class="waves-effect waves-light btn"
+							onclick="document.getElementById('formpessoa').reset();">Novo</button>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</form>
+
+	</div>
+
+	<br />
+	<br />
+
+	<div class="row">
+
+		<form action="pesquisarpessoa" method="POST" class="col 12">
+
+			<div class="row">
+
+				<div class="input-field col s12">
+
+					<label class="active" for="nomepesquisa">Pesquisa por nome:</label>
+					<input name="nomepesquisa" id="nomepesquisa" class="validate">
+					<button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
+					<a href="/listapessoas" class="btn waves-effect waves-light">LISTAR PESSOAS</a>
+
+				</div>
+
+			</div>
+		</form>
+
+
+	</div>
+
+	<br />
+	<br />
+
+
+	<table class="striped">
+
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Sobrenome</th>
+				<th>Idade</th>
+				<th>Editar</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tr th:each="pessoa:${pessoas}">
+
+			<td th:text="${pessoa.id}"></td>
+			<td ><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}"><span th:text="${pessoa.nome}"></span></a></td>
+			<td th:text="${pessoa.sobrenome}"></td>
+			<td th:text="${pessoa.idade}"></td>
+			<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
+			<td><a th:href="@{/excluirpessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
+
+		</tr>
+	</table>
+
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+
+	</div>
+
+
+
+
+</body>
+
+<br/> <br/> <br/>
+
+<footer class="page-footer">
+	<div class="container">
+	  <div class="row">
+		<div class="col l6 s12">
+		  <h5 class="white-text">Footer Content</h5>
+		  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+		</div>
+		<div class="col l4 offset-l2 s12">
+		  <h5 class="white-text">Links</h5>
+		  <ul>
+			<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+			<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+			<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+			<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+	<div class="footer-copyright">
+	  <div class="container">
+	  © 2014 Copyright Text
+	  <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+	  </div>
+	</div>
+  </footer>
+
+</html>
